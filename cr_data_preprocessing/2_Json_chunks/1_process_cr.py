@@ -4,13 +4,12 @@ import os
 from bs4 import BeautifulSoup
 from langchain_text_splitters import (
     MarkdownHeaderTextSplitter,
-    RecursiveCharacterTextSplitter,
 )
 import nltk
 
 
 """This code processes a directory where Change Requests (CRs) in .md format are located. It parses the table
-using HTML parsing, and the changes clauses based on markdown headers if they exit in the file.
+using HTML parsing, and the changes clauses based on markdown headers if they exist in the file.
 It produces a JSON that contains the CR metadata and the body of the CR (the changed clauses)."""
 
 
@@ -53,7 +52,7 @@ def process_file(file_path):
         for i, item in enumerate(header_splits, start=0):
             headers = item.metadata
             contents = item.page_content.strip()
-            tokens = nltk.word_tokenize(contents)
+            
 
             if headers:
                 titles_list.append(headers)
